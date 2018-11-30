@@ -11,6 +11,8 @@ class Search(db.EmbeddedDocument):
     search = db.StringField()
     created = db.DateTimeField()
     validated = db.BooleanField()
+    validation_email_sent = db.BooleanField()
+    validation_email_sent_date = db.DateTimeField()
 
     def __str__(self):
         return self.hash
