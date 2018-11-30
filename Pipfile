@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+ipdb = "*"
+
+[packages]
+celery = "*"
+redis = "~=2.10.6"
+mongoengine = "*"
+sparkpost = "*"
+
+[requires]
+python_version = "3.7"
