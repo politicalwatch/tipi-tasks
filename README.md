@@ -67,7 +67,14 @@ $ docker exec -ti tipi_redis sh
 ``
 
 ``
-$ docker exec -ti tipi_db sh
+$ docker exec -ti tipi_db bash
+``
+
+## Load test data in mongo db
+
+``
+$ docker cp testdb.js tipi_db:/tmp/
+$ docker exec -ti tipi_db mongo /tmp/testdb.js
 ``
 
 ## Launching a task
