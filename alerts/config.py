@@ -7,5 +7,11 @@ MONGO_PORT = 27017
 MONGO_USER = ''
 MONGO_PASSWORD = ''
 
-SPARKPOST_API = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+VALIDATION_EMAIL_SUBJECT = 'Validación de Alerta'
+SPARKPOST_API = 'XXXXXXXXXXXXXXXXXXXXXXX'
 FROM_EMAIL = 'test@example.com'
+
+try:
+    from .local_config import *
+except:
+    pass

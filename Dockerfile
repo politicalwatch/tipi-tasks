@@ -9,4 +9,4 @@ WORKDIR /app
 COPY . /app/
 RUN pipenv install
 
-CMD pipenv run celery -A alerts worker -l info
+CMD pipenv run celery -A alerts worker -B -l info

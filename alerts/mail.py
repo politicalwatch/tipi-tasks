@@ -10,6 +10,7 @@ def sparkpost_email(recipients, subject, template, context={}):
     sp.transmissions.send(
         recipients=recipients,
         from_email=FROM_EMAIL,
+        subject=subject,
         html=template,
         substitution_data=context,
     )
@@ -24,7 +25,7 @@ def debug_email(recipients, subject, template, context={}):
     print(template.render(**context))
 
 
-if DEBUG:
-    send_email = debug_email
-else:
-    send_email = sparkpost_email
+def send_email(*args, **kwargs):
+    if DEBUG:
+        return debug_email(*args, **kwargs)
+    return sparkpost_email(*args, **kwargs)

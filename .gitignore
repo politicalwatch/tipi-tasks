@@ -3,3 +3,5 @@
 .ipython/
 .venv/
 Pipfile.lock
+alerts/local_config.py
+celerybeat-schedule
