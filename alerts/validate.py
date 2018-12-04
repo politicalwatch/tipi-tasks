@@ -47,10 +47,9 @@ def clean_emails():
     models.connect()
 
     alerts = Alert.objects.filter(searches__validated=False)
-    timeout = datetime.now() - timedelta(days=1)
+    timeout = datetime.now() - timedelta(days=config.VALIDATION_TIMEOUT)
     for alert in alerts:
         searches = alert.searches.filter(validated=False)
-        searches = searches.exclude(validation_email_sent=True)
         for search in searches:
             if search.created > timeout:
                 continue
