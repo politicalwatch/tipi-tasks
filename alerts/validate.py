@@ -54,3 +54,6 @@ def clean_emails():
             if search.created > timeout:
                 continue
             alerts.update(pull__searches__hash=search.hash)
+
+    # Remove emails without searches
+    Alert.objects.filter(searches__size=0).delete()
