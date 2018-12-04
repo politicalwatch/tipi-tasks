@@ -8,7 +8,7 @@ ipdb = "*"
 
 [packages]
 celery = "*"
-redis = "~=2.10.6"
+redis = "*"
 mongoengine = "*"
 sparkpost = "*"
 jinja2 = "*"
