@@ -3,7 +3,6 @@ from datetime import datetime
 from datetime import timedelta
 
 from celery import shared_task
-from celery.schedules import crontab
 from celery.decorators import periodic_task
 
 from . import models
@@ -47,7 +46,7 @@ def send_validation_emails():
         alert.save()
 
 
-@periodic_task(run_every=crontab(minute="*/1"))
+@periodic_task(run_every=timedelta(seconds=config.CLEAN_EMAILS_TIMEOUT))
 def clean_emails():
     models.connect()
 

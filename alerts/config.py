@@ -14,6 +14,8 @@ FROM_EMAIL = 'test@example.com'
 TEMPLATE_DIR = None
 # validation timeout in days
 VALIDATION_TIMEOUT = 5
+# Timeout to run the clean email task every X seconds
+CLEAN_EMAILS_TIMEOUT = 300
 
 
 try:
