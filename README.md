@@ -53,29 +53,29 @@ You'll have three containers running:
 
 You should be able to enter in any of this containers with the `docker exec`, like:
 
-``
+```
 # to get a shell
 $ docker exec -ti tipi_alerts sh
 # to get a python shell
 $ docker exec -ti tipi_alerts pipenv run ipython
 # to run the test script
 $ docker exec -ti tipi_alerts pipenv run ./test-task.py
-``
+```
 
-``
+```
 $ docker exec -ti tipi_redis sh
-``
+```
 
-``
+```
 $ docker exec -ti tipi_db bash
-``
+```
 
 ## Load test data in mongo db
 
-``
+```
 $ docker cp testdb.js tipi_db:/tmp/
 $ docker exec -ti tipi_db mongo /tmp/testdb.js
-``
+```
 
 ## Launching a task
 
