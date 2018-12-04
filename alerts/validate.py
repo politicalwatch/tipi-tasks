@@ -13,8 +13,12 @@ from . import config
 
 @shared_task
 def send_validation_emails():
-    dirname = os.path.dirname(__file__)
-    tmpl = os.path.join(dirname, 'templates', 'validation.html')
+    if getattr(config, 'TEMPLATE_DIR') and config.TEMPLATE_DIR:
+        dirname = config.TEMPLATE_DIR
+    else:
+        dirname = os.path.join(os.path.dirname(__file__), 'templates')
+
+    tmpl = os.path.join(dirname, 'validation.html')
     template = open(tmpl).read()
 
     # getting all users that've not validated searches

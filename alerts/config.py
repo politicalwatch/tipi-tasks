@@ -11,6 +11,8 @@ VALIDATION_EMAIL_SUBJECT = 'Validación de Alerta'
 SPARKPOST_API = 'XXXXXXXXXXXXXXXXXXXXXXX'
 FROM_EMAIL = 'test@example.com'
 
+TEMPLATE_DIR = None
+
 try:
     from local_config import *
 except:
