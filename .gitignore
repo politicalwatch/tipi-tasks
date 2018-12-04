@@ -3,5 +3,6 @@
 .ipython/
 .venv/
 Pipfile.lock
-alerts/local_config.py
+local_config.py
+templates
 celerybeat-schedule

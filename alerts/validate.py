@@ -6,6 +6,7 @@ from celery import shared_task
 from celery.schedules import crontab
 from celery.decorators import periodic_task
 
+from . import models
 from .models import Alert
 from .mail import send_email
 from . import config
@@ -20,6 +21,8 @@ def send_validation_emails():
 
     tmpl = os.path.join(dirname, 'validation.html')
     template = open(tmpl).read()
+
+    models.connect()
 
     # getting all users that've not validated searches
     alerts = Alert.objects.filter(searches__validated=False)
@@ -41,6 +44,8 @@ def send_validation_emails():
 
 @periodic_task(run_every=crontab(minute="*/1"))
 def clean_emails():
+    models.connect()
+
     alerts = Alert.objects.filter(searches__validated=False)
     timeout = datetime.now() - timedelta(days=1)
     for alert in alerts:
