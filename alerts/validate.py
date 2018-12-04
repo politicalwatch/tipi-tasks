@@ -30,8 +30,13 @@ def send_validation_emails():
         searches = alert.searches.filter(validated=False)
         searches = searches.exclude(validation_email_sent=True)
         for search in searches:
+            time_passed = (datetime.now() - search.created).days
+            timeout = config.VALIDATION_TIMEOUT - time_passed
             context = {
                 'hash': search.hash,
+                'email_id': alert.id,
+                'email': alert.email,
+                'timeout': timeout,
             }
             send_email([alert.email],
                        config.VALIDATION_EMAIL_SUBJECT,

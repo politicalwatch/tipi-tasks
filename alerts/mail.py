@@ -16,7 +16,7 @@ def sparkpost_email(recipients, subject, template, context={}):
 
 def debug_email(recipients, subject, template, context={}):
     print("New email:")
-    print("from: {}".format(FROM_EMAIL))
+    print("from: {}".format(config.FROM_EMAIL))
     print("to: {}".format(recipients))
     print("subject: {}".format(subject))
     template = Template(template)
