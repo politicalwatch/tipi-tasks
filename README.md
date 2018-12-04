@@ -21,13 +21,13 @@ $ pip install -r requirements.txt
 ## Run
 
 ```
-$ celery -A alerts worker -B -l info
+$ celery -A tipi_alerts worker -B -l info
 ```
 
 If you're using pipenv environment you should run with the pipenv run command
 
 ```
-$ pipenv run celery -A alerts worker -B -l info
+$ pipenv run celery -A tipi_alerts worker -B -l info
 ```
 
 ## Docker
@@ -79,11 +79,11 @@ $ docker exec -ti tipi_db mongo /tmp/testdb.js
 
 ## Launching a task
 
-To launch a task you should import the task from the `alerts` module and then
-call with the delay, for example:
+To launch a task you should import the task from the `tipi_alerts` module and
+then call with the delay, for example:
 
 ```python
-from alerts import test
+from tipi_alerts import test
 task = test.test_task.apply_async((3, 2))
 ```
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-from alerts import test
-from alerts import validate
+from tipi_alerts import test
+from tipi_alerts import validate
 
 
 if __name__ == '__main__':
