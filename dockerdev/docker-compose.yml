@@ -32,6 +32,7 @@ services:
     environment:
       PIPENV_VENV_IN_PROJECT: 1
       HOME: /app
+      BROKER_URL: "redis://redis:6379/0"
     command: pipenv run celery -A alerts worker -B -l info
     depends_on:
       - redis

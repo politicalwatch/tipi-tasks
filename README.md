@@ -21,13 +21,13 @@ $ pip install -r requirements.txt
 ## Run
 
 ```
-$ celery -A tipi worker -B -l info
+$ celery -A alerts worker -B -l info
 ```
 
 If you're using pipenv environment you should run with the pipenv run command
 
 ```
-$ pipenv run "celery -A tipi worker -B -l info"
+$ pipenv run celery -A alerts worker -B -l info
 ```
 
 ## Docker

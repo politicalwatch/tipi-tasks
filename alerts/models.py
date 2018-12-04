@@ -2,8 +2,9 @@ import mongoengine as db
 from . import config
 
 
-db.connect(config.MONGO_DB, host=config.MONGO_HOST, port=config.MONGO_PORT,
-           username=config.MONGO_USER, password=config.MONGO_PASSWORD)
+def connect():
+    db.connect(config.MONGO_DB, host=config.MONGO_HOST, port=config.MONGO_PORT,
+               username=config.MONGO_USER, password=config.MONGO_PASSWORD)
 
 
 class Search(db.EmbeddedDocument):
@@ -29,3 +30,6 @@ class Alert(db.Document):
 
     def __str__(self):
         return self.email
+
+
+connect()

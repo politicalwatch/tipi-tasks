@@ -8,7 +8,7 @@ from celery.decorators import periodic_task
 
 from .models import Alert
 from .mail import send_email
-from .config import VALIDATION_EMAIL_SUBJECT
+from . import config
 
 
 @shared_task
@@ -27,7 +27,7 @@ def send_validation_emails():
                 'hash': search.hash,
             }
             send_email([alert.email],
-                       VALIDATION_EMAIL_SUBJECT,
+                       config.VALIDATION_EMAIL_SUBJECT,
                        template,
                        context)
             search.validation_email_sent=True

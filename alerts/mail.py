@@ -1,15 +1,13 @@
 import sparkpost
 from jinja2 import Template
-from .config import SPARKPOST_API, DEBUG, FROM_EMAIL
-
-
-sp = sparkpost.SparkPost(SPARKPOST_API)
+from . import config
 
 
 def sparkpost_email(recipients, subject, template, context={}):
+    sp = sparkpost.SparkPost(config.SPARKPOST_API)
     sp.transmissions.send(
         recipients=recipients,
-        from_email=FROM_EMAIL,
+        from_email=config.FROM_EMAIL,
         subject=subject,
         html=template,
         substitution_data=context,
@@ -26,6 +24,6 @@ def debug_email(recipients, subject, template, context={}):
 
 
 def send_email(*args, **kwargs):
-    if DEBUG:
+    if config.DEBUG:
         return debug_email(*args, **kwargs)
     return sparkpost_email(*args, **kwargs)

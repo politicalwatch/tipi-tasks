@@ -1,4 +1,4 @@
-DEBUG = True
+DEBUG = False
 BROKER = 'redis://redis:6379/0'
 
 MONGO_DB = 'tipi'
@@ -12,6 +12,6 @@ SPARKPOST_API = 'XXXXXXXXXXXXXXXXXXXXXXX'
 FROM_EMAIL = 'test@example.com'
 
 try:
-    from .local_config import *
+    from local_config import *
 except:
     pass
