@@ -4,5 +4,4 @@
 .venv/
 Pipfile.lock
 local_config.py
-templates
 celerybeat-schedule
