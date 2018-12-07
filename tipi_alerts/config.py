@@ -1,6 +1,8 @@
 DEBUG = False
 BROKER = 'redis://redis:6379/0'
 
+TIPI_BACKEND = 'http://localhost:5000'
+
 MONGO_DB = 'tipi'
 MONGO_HOST = 'db'
 MONGO_PORT = 27017

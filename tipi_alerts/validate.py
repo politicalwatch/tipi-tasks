@@ -32,10 +32,12 @@ def send_validation_emails():
             time_passed = (datetime.now() - search.created).days
             timeout = config.VALIDATION_TIMEOUT - time_passed
             context = {
-                'hash': search.hash,
-                'email_id': alert.id,
-                'email': alert.email,
-                'timeout': timeout,
+                'validate_url': "{}/validate-email/{}/{}".format(
+                    config.TIPI_BACKEND,
+                    alert.id,
+                    search.hash
+                    ),
+                'timeout': timeout
             }
             send_email([alert.email],
                        config.VALIDATION_EMAIL_SUBJECT,

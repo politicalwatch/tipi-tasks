@@ -1,18 +1,10 @@
 <html>
   <body>
-    Hola,
+    <p>Haz click en el siguiente enlace para validar la alerta</p>
+    <pre>{{validate_url}}</pre>
+    <p>Si no puedes hacer click en este enlace, cópiala y pégala en tu navegador</p>
     <br/>
-
-    Validación de alerta:
-    <br/>
-    Email: {{email}}
-    <br/>
-    Email hash: {{email_id}}
-    Search hash: {{hash}}
-    <br/>
-    Días para validar: {{timeout}}
-    <hr/>
-    <a href="http://validate_email/{{email_id}}/{{hash}}">Validar</a>
-    <hr/>
+    <hr>
+    Nota: Tienes {{timeout}} días para validar esta alerta. SI transcurrido ese tiempo no ha sido validada, se borrará de nuestro sistema.
   </body>
 </html>
