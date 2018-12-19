@@ -10,6 +10,7 @@ def connect():
 class Search(db.EmbeddedDocument):
     hash = db.StringField(unique=True)
     search = db.StringField()
+    dbsearch = db.StringField()
     created = db.DateTimeField()
     validated = db.BooleanField()
     validation_email_sent = db.BooleanField()
