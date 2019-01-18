@@ -13,5 +13,5 @@ def init():
     app = Celery('tasks', broker=BROKER)
 
 
-from .test import *
+from .alerts import *
 from .validate import *

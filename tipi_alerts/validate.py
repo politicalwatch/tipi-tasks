@@ -8,6 +8,7 @@ from celery.decorators import periodic_task
 from . import models
 from .models import Alert
 from .mail import send_email
+from .sentence import make_sentence
 from . import config
 
 
@@ -32,6 +33,9 @@ def send_validation_emails():
             time_passed = (datetime.now() - search.created).days
             timeout = config.VALIDATION_TIMEOUT - time_passed
             context = {
+                'tipi_name': config.TIPI_NAME,
+                'tipi_email': config.TIPI_EMAIL,
+                'search_sentence': make_sentence(search.search),
                 'validate_url': "{}/emails/validate/{}/{}".format(
                     config.TIPI_BACKEND,
                     alert.id,

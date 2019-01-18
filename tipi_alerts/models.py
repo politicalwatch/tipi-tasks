@@ -31,3 +31,17 @@ class Alert(db.Document):
 
     def __str__(self):
         return self.email
+
+
+class Initiative(db.DynamicDocument):
+    id = db.StringField(db_field='_id', primary_key=True)
+    meta = {
+        'collection': 'initiatives'
+    }
+
+class InitiativeAlert(db.DynamicDocument):
+    id = db.StringField(db_field='_id', primary_key=True)
+    meta = {
+        'collection': 'initiatives_alerts'
+    }
+

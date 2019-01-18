@@ -4,13 +4,16 @@ from . import config
 
 
 def sparkpost_email(recipients, subject, template, context={}):
+    template = Template(template)
+    html = template.render(**context)
     sp = sparkpost.SparkPost(config.SPARKPOST_API)
     sp.transmissions.send(
         recipients=recipients,
         from_email=config.FROM_EMAIL,
         subject=subject,
-        html=template,
-        substitution_data=context,
+        html=html,
+        track_opens=True,
+        track_clicks=True
     )
 
 
