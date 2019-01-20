@@ -6,3 +6,6 @@ __pycache__/
 Pipfile.lock
 local_config.py
 celerybeat-schedule
+build/
+dist/
+tipi_alerts.egg-info/
