@@ -1,3 +1,4 @@
+*.pyc
 .ash_history
 __pycache__/
 .cache/
