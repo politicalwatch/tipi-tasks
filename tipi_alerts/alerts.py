@@ -5,7 +5,7 @@ from datetime import datetime
 from celery import shared_task
 
 from . import models
-from .models import Alert, Initiative, InitiativeAlert
+from .models import Alert, InitiativeAlert
 from .mail import send_email
 from .sentence import make_sentence
 from . import config
@@ -31,7 +31,7 @@ def send_alerts():
                 }
         searches = alert.searches.filter(validated=True)
         for search in searches:
-            initiatives = Initiative.objects(
+            initiatives = InitiativeAlert.objects(
                     __raw__=ast.literal_eval(search.dbsearch)
                 ).exclude('content')
             if initiatives.count():

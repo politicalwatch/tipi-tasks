@@ -33,12 +33,6 @@ class Alert(db.Document):
         return self.email
 
 
-class Initiative(db.DynamicDocument):
-    id = db.StringField(db_field='_id', primary_key=True)
-    meta = {
-        'collection': 'initiatives'
-    }
-
 class InitiativeAlert(db.DynamicDocument):
     id = db.StringField(db_field='_id', primary_key=True)
     meta = {
