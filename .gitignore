@@ -7,6 +7,7 @@ __pycache__/
 Pipfile.lock
 local_config.py
 celerybeat-schedule
+celerybeat-schedule.db
 build/
 dist/
 tipi_alerts.egg-info/
