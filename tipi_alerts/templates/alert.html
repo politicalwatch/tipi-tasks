@@ -2,104 +2,36 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8">
-    <style type="text/css">
-header {
-  text-align: center;
-}
-.alerts {
-  margin: 40px auto;
-  max-width: 800px;
-  border-bottom: #cfcfcf dashed 3px;
-}
-.alerts .alert {
-  margin: 20px 0px;
-  padding-bottom: 10px;
-}
-.alerts .alert h2.title {
-  font-size: 16px;
-  border-bottom: {{tipi_color}} solid 5px;
-  padding-bottom: 5px;
-}
-.alerts .alert p.unsubscribe {
-  text-align: right;
-}
-.alerts .alert p.unsubscribe a {
-  background-color: #E74C3C;
-  text-decoration: none;
-  color: #fff;
-  padding: 5px 10px;
-  font-size: 13px;
-}
-.alerts .alert ul {
-  margin: 20px 0px;
-  list-style-type: none;
-  padding: 0px 10px;
-}
-.alerts .alert ul li {
-  margin: 20px 0px;
-}
-.alerts .alert ul li a {
-  color: #00ADD8;
-  text-decoration: none;
-}
-p.donate {
-  margin: 20px auto;
-  max-width: 600px;
-  text-align: center;
-  font0-weight: bold;
-  padding-bottom: 40px;
-}
-p.donate a {
-  color: #00ADD8;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1.1em;
-}
-footer {
-  border-top: 1px solid #cfcfcf;
-  color: #8f8f8f;
-  text-align: center;
-  margin: 0px auto;
-  max-width: 800px;
-  padding: 40px 0px 40px 0px;
-}
-footer p {
-  max-width: 650px;
-  margin: 0px auto;
-  font-size: 13px;
-  padding-bottom: 20px;
-}
-    </style>
   </head>
   <body>
-    <header>
+    <div style="text-align: center;">
       <img src="{{banner_url}}" alt="Banner de {{tipi_name}}">
-    </header>
+    </div>
 
-    <div class="alerts">
+    <div style="margin: 40px auto; max-width: 800px; border-bottom: #cfcfcf dashed 3px;">
       {% for search in alert.searches %}
-      <div class="alert">
-	<h2 class="title">{{search.search_sentence}}</h2>
-	<p class="unsubscribe"><a href="{{tipi_backend}}/emails/unsubscribe/{{alert.id}}/{{search.hash}}">Cancelar alerta</a></p>
-	<ul>
+      <div style="margin: 20px 0px; padding-bottom: 10px;">
+	<h2 style="font-size: 16px; border-bottom: {{tipi_color}} solid 5px; padding-bottom: 5px;">{{search.search_sentence}}</h2>
+	<p style="text-align: right;"><a style="background-color: #E74C3C; text-decoration: none; color: #fff; padding: 5px 10px; font-size: 13px;" href="{{tipi_backend}}/emails/unsubscribe/{{alert.id}}/{{search.hash}}">Cancelar alerta</a></p>
+	<ul style="margin: 20px 0px; list-style-type: none; padding: 0px 10px;">
 	  {% for initiative in search.initiatives %}
-	  <li><a href="{{tipi_frontend}}/initiatives/{{initiative.id}}">{{initiative.title}}</a></li>
+	  <li style="margin: 20px 0px;"><a style="color: #00ADD8; text-decoration: none;" href="{{tipi_frontend}}/initiatives/{{initiative.id}}">{{initiative.title}}</a></li>
 	  {% endfor %}
 	</ul>
       </div>
       {% endfor %}
     </div>
 
-    <p class="donate">Las alertas de {{tipi_name}} necesitan cariño y apoyo para continuar siguiendo de cerca la actividad parlamentaria. Considera la posibilidad de donar a CIECODE para contribuir a mantener este trabajo en <a href="https://ciecode.es/donar">ciecode.es/donar</a></p>
-    <footer>
-      <p>{{tipi_description}}</p>
-      <p>Si quiere contactar con nosotros, escríbenos a {{tipi_email}}</p>
-      <p>En cumplimiento del nuevo Reglamento General de Protección de Datos (RGPD) 2016/679 te informamos que tus datos forman parte de un fichero responsabilidad de la Fundación Salvador Soler con el fin exclusivo de enviarte notificaciones sobre la actividad parlamentaria de tus temáticas de interés.<br/>
+    <p style="margin: 20px auto; max-width: 600px; text-align: center; font0-weight: bold; padding-bottom: 40px;">Las alertas de {{tipi_name}} necesitan cariño y apoyo para continuar siguiendo de cerca la actividad parlamentaria. Considera la posibilidad de donar a CIECODE para contribuir a mantener este trabajo en <a style="color: #00ADD8; font-weight: bold; text-decoration: none; font-size: 1.1em;" href="https://ciecode.es/donar">ciecode.es/donar</a></p>
+    <div style="border-top: 1px solid #cfcfcf; color: #8f8f8f; text-align: center; margin: 0px auto; max-width: 800px; padding: 40px 0px 40px 0px;">
+      <p style="max-width: 650px; margin: 0px auto; font-size: 13px; padding-bottom: 20px;">{{tipi_description}}</p>
+      <p style="max-width: 650px; margin: 0px auto; font-size: 13px; padding-bottom: 20px;">Si quiere contactar con nosotros, escríbenos a {{tipi_email}}</p>
+      <p style="max-width: 650px; margin: 0px auto; font-size: 13px; padding-bottom: 20px;">En cumplimiento del nuevo Reglamento General de Protección de Datos (RGPD) 2016/679 te informamos que tus datos forman parte de un fichero responsabilidad de la Fundación Salvador Soler con el fin exclusivo de enviarte notificaciones sobre la actividad parlamentaria de tus temáticas de interés.<br/>
       Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición al tratamiento de tus datos personales enviando una solicitud a la atención del Delegado de Protección de Datos de la Fundación Salvador Soler: <br/>
       Dirección: Avenida Cardenal Herrera Oria 63, 3º Izq. 28034. Madrid. <br/>
       Email: coordinacion@unmundosalvadorsoler.org<br/>
       Teléfono: 691 691 810
       </p>
-    </footer>
+    </div>
   </body>
-</html>
+</html> 
