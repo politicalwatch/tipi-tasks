@@ -9,7 +9,7 @@ def sparkpost_email(recipients, subject, template, context={}):
     sp = sparkpost.SparkPost(config.SPARKPOST_API)
     sp.transmissions.send(
         recipients=recipients,
-        from_email=config.FROM_EMAIL,
+        from_email='{} <{}>'.format(config.TIPI_NAME, config.FROM_EMAIL),
         subject=subject,
         html=html,
         track_opens=True,
