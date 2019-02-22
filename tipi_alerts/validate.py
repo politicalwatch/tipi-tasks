@@ -1,6 +1,6 @@
 import os
-from datetime import datetime
-from datetime import timedelta
+import json
+from datetime import datetime, date, timedelta
 
 from celery import shared_task
 from celery.decorators import periodic_task
@@ -64,6 +64,24 @@ def clean_emails():
             if search.created > timeout:
                 continue
             alerts.update(pull__searches__hash=search.hash)
+
+    # Remove emails without searches
+    Alert.objects.filter(searches__size=0).delete()
+
+
+@periodic_task(run_every=timedelta(seconds=config.CLEAN_EMAILS_TIMEOUT))
+def clean_alerts_with_past_dates():
+    models.connect()
+
+    alerts = Alert.objects.filter(searches__validated=True)
+    for alert in alerts:
+        searches = alert.searches.filter(validated=True)
+        for search in searches:
+            search_obj = json.loads(search.search)
+            if 'enddate' in search_obj.keys():
+                if str(date.today()) < search_obj['enddate']:
+                    continue
+                alerts.update(pull__searches__hash=search.hash)
 
     # Remove emails without searches
     Alert.objects.filter(searches__size=0).delete()
