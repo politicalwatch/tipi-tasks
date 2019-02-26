@@ -1,5 +1,5 @@
 DEBUG = False
-BROKER = 'redis://redis:6379/0'
+BROKER = 'redis://redis:6379/2'
 
 TIPI_NAME = 'TIPI'
 TIPI_DESCRIPTION = ''
