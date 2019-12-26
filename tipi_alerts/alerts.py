@@ -4,8 +4,8 @@ from datetime import datetime
 
 from celery import shared_task
 
-from . import models
-from .models import Alert, InitiativeAlert
+from tipi_data.models.alert import Alert, InitiativeAlert
+
 from .mail import send_email
 from .sentence import make_sentence
 from . import config
@@ -20,8 +20,6 @@ def send_alerts():
 
     tmpl = os.path.join(dirname, 'alert.html')
     template = open(tmpl).read()
-
-    models.connect()
 
     alerts = Alert.objects.filter(searches__validated=True)
     for alert in alerts:

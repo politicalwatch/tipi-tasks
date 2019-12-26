@@ -5,8 +5,8 @@ from datetime import datetime, date, timedelta
 from celery import shared_task
 from celery.decorators import periodic_task
 
-from . import models
-from .models import Alert
+from tipi_data.models.alert import Alert
+
 from .mail import send_email
 from .sentence import make_sentence
 from . import config
@@ -21,8 +21,6 @@ def send_validation_emails():
 
     tmpl = os.path.join(dirname, 'validation.html')
     template = open(tmpl).read()
-
-    models.connect()
 
     # getting all users that've not validated searches
     alerts = Alert.objects.filter(searches__validated=False)
@@ -54,8 +52,6 @@ def send_validation_emails():
 
 @periodic_task(run_every=timedelta(seconds=config.CLEAN_EMAILS_TIMEOUT))
 def clean_emails():
-    models.connect()
-
     alerts = Alert.objects.filter(searches__validated=False)
     timeout = datetime.now() - timedelta(days=config.VALIDATION_TIMEOUT)
     for alert in alerts:
@@ -71,8 +67,6 @@ def clean_emails():
 
 @periodic_task(run_every=timedelta(seconds=config.CLEAN_EMAILS_TIMEOUT))
 def clean_alerts_with_past_dates():
-    models.connect()
-
     alerts = Alert.objects.filter(searches__validated=True)
     for alert in alerts:
         searches = alert.searches.filter(validated=True)
