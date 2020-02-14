@@ -1,12 +1,11 @@
-from python:alpine
+FROM python:3.6-slim
 
-RUN apk add --no-cache git gcc libc-dev
+RUN apt-get update && apt-get install -y git gcc
 RUN pip install --upgrade pip
-RUN pip install pipenv
 
-ENV PIPENV_VENV_IN_PROJECT=1
 WORKDIR /app
+COPY requirements.txt /app/
+RUN pip install -r requirements.txt
 COPY . /app/
-RUN pipenv install
 
-CMD pipenv run celery -A tipi_alerts worker -B -l info
+CMD celery -A tipi_alerts worker -B -l info

@@ -11,7 +11,7 @@ TIPI_FRONTEND = env.get('TIPI_FRONTEND', 'http://localhost:8080')
 TIPI_BACKEND = env.get('TIPI_BACKEND', 'http://localhost:5000')
 TIPI_COLOR = env.get('TIPI_COLOR', '#000000')
 
-MONGO_DB = env.get('MONGO_DB', 'tipi')
+MONGO_DB = env.get('MONGO_DB_NAME', 'tipi')
 MONGO_HOST = env.get('MONGO_HOST', 'db')
 MONGO_PORT = int(env.get('MONGO_PORT', '27017'))
 MONGO_USER = env.get('MONGO_USER', '')
