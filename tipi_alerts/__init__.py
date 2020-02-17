@@ -1,10 +1,20 @@
-import os
+from os import environ as env
+
+import sentry_sdk
 from celery import Celery
+from sentry_sdk.integrations.celery import CeleryIntegration
 
 from . import config
 
 
-BROKER = os.environ.get('BROKER_URL', config.BROKER)
+SENTRY_DSN = env.get('SENTRY_DSN', None)
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[CeleryIntegration()]
+    )
+
+BROKER = env.get('BROKER_URL', config.BROKER)
 app = Celery('tasks', broker=BROKER)
 
 
