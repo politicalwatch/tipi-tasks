@@ -2,6 +2,7 @@ import pcre
 from celery import shared_task
 from redis import Redis
 
+from tipi_alerts import app
 from . import config
 
 
@@ -21,8 +22,8 @@ def __append_tag_to_founds(tags_found, new_tag):
 @shared_task
 def extract_labels_from_text(text, tags=None, cache_key='tags-for-labeling'):
     if not tags:  # recovery from cache. Saved from backend
-        conn = Redis(host=config.CACHE_REDIS_HOST, port=config.CACHE_REDIS_PORT, db=config.CACHE_REDIS_DB)
-        tags = conn.get(cache_key)
+        conn = Redis(host=config.CACHE_REDIS_HOST, db=config.CACHE_REDIS_DB)
+        tags = conn.get(cache_key) or []
 
     tags_found = []
     text = ''.join(text.splitlines())
@@ -43,4 +44,9 @@ def extract_labels_from_text(text, tags=None, cache_key='tags-for-labeling'):
 
 
 def check_status_task(task_id):
-    return True
+    task = app.AsyncResult(task_id)
+    result = None
+    st = task.status
+    if st == 'SUCCESS':
+        result = task.get()
+    return {'status': st, 'result': result}

@@ -3,6 +3,7 @@ from os import environ as env
 
 DEBUG = env.get('DEBUG', 'False') == 'True'
 BROKER = env.get('BROKER', 'redis://redis:6379/2')
+RESULT_BACKEND = env.get('RESULT_BACKEND', 'redis://redis:6379/3')
 
 TIPI_NAME = env.get('TIPI_NAME', 'TIPI')
 TIPI_DESCRIPTION = env.get('TIPI_DESCRIPTION', '')
