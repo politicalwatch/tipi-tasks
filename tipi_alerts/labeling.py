@@ -1,6 +1,8 @@
 import pcre
-
 from celery import shared_task
+from redis import Redis
+
+from . import config
 
 
 def __append_tag_to_founds(tags_found, new_tag):
@@ -17,7 +19,11 @@ def __append_tag_to_founds(tags_found, new_tag):
 
 
 @shared_task
-def extract_labels_from_text(text, tags):
+def extract_labels_from_text(text, tags=None, cache_key='tags-for-labeling'):
+    if not tags:  # recovery from cache. Saved from backend
+        conn = Redis(host=config.CACHE_REDIS_HOST, port=config.CACHE_REDIS_PORT, db=config.CACHE_REDIS_DB)
+        tags = conn.get(cache_key)
+
     tags_found = []
     text = ''.join(text.splitlines())
     for line in text.split('.'):
