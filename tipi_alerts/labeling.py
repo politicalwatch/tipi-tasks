@@ -1,3 +1,5 @@
+import pickle
+
 import pcre
 from celery import shared_task
 from redis import Redis
@@ -19,11 +21,27 @@ def __append_tag_to_founds(tags_found, new_tag):
         tags_found.append(new_tag)
 
 
+def load_redis(value):
+    """ Function from flask-caching to load object. """
+    if value is None:
+        return None
+    if value.startswith(b"!"):
+        try:
+            return pickle.loads(value[1:])
+        except pickle.PickleError:
+            return None
+    try:
+        return int(value)
+    except ValueError:
+        # before 0.8 we did not have serialization.  Still support that.
+        return value
+
+
 @shared_task
 def extract_labels_from_text(text, tags=None, cache_key='tags-for-labeling'):
     if not tags:  # recovery from cache. Saved from backend
         conn = Redis(host=config.CACHE_REDIS_HOST, db=config.CACHE_REDIS_DB)
-        tags = conn.get(cache_key) or []
+        tags = load_redis(conn.get(cache_key)) or []
 
     tags_found = []
     text = ''.join(text.splitlines())
