@@ -20,9 +20,6 @@ def __append_tag_to_founds(tags_found, new_tag):
         tags_found.append(new_tag)
 
 
-def load_tags(tags):
-
-
 @shared_task
 def extract_labels_from_text(text, tags):
     tags = pickle.loads(tags)
