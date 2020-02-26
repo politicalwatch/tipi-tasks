@@ -10,4 +10,4 @@ celerybeat-schedule
 celerybeat-schedule.db
 build/
 dist/
-tipi_alerts.egg-info/
+tipi_tasks.egg-info/

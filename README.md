@@ -1,6 +1,6 @@
-# TIPI ALERTS
+# TIPI TASKS
 
-A list of tasks for celery to manage alerts from users
+A list of tasks for celery to manage tasks from users
 
 ## Setup
 
@@ -21,13 +21,13 @@ $ pip install -r requirements.txt
 ## Run
 
 ```
-$ celery -A tipi_alerts worker -B -l info
+$ celery -A tipi_tasks worker -B -l info
 ```
 
 If you're using pipenv environment you should run with the pipenv run command
 
 ```
-$ pipenv run celery -A tipi_alerts worker -B -l info
+$ pipenv run celery -A tipi_tasks worker -B -l info
 ```
 
 ## Docker
@@ -47,7 +47,7 @@ $ docker-compose up -d
 
 You'll have three containers running:
 
- * tipi\_alerts
+ * tipi\_tasks
  * tipi\_db
  * tipi\_redis
 
@@ -55,11 +55,11 @@ You should be able to enter in any of this containers with the `docker exec`, li
 
 ```
 # to get a shell
-$ docker exec -ti tipi_alerts sh
+$ docker exec -ti tipi_tasks sh
 # to get a python shell
-$ docker exec -ti tipi_alerts pipenv run ipython
+$ docker exec -ti tipi_tasks pipenv run ipython
 # to run the test script
-$ docker exec -ti tipi_alerts pipenv run ./test-task.py
+$ docker exec -ti tipi_tasks pipenv run ./test-task.py
 ```
 
 ```
@@ -79,11 +79,11 @@ $ docker exec -ti tipi_db mongo /tmp/testdb.js
 
 ## Launching a task
 
-To launch a task you should import the task from the `tipi_alerts` module and
+To launch a task you should import the task from the `tipi_tasks` module and
 then call with the delay, for example:
 
 ```python
-from tipi_alerts import test
+from tipi_tasks import test
 task = test.test_task.apply_async((3, 2))
 ```
 
@@ -92,7 +92,7 @@ The task will be sent to the celery queue and will be executed by the broker.
 ## Configuring
 
 This module uses a python file as a configuration, if you use this project
-copying the source code you can edit the config file `tipi_alerts/config.py`.
+copying the source code you can edit the config file `tipi_tasks/config.py`.
 
 To avoid conflicts in deployment with git the config file tries to load a
 `local_config.py` file if exists that replaces all defined variables there.
@@ -103,7 +103,7 @@ celery worker and tasks.
 ## Custom Validation email template
 
 The email template used to validate searches is placed in
-`tipi_alerts/templates/validation.html`, but this can be replaced with the
+`tipi_tasks/templates/validation.html`, but this can be replaced with the
 configuration. There's a config variable called `TEMPLATE_DIR` that you
 can override to use a custom template directory. For example:
 
