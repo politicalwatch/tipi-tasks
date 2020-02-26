@@ -14,14 +14,14 @@ if SENTRY_DSN:
         integrations=[CeleryIntegration()]
     )
 
-BROKER = env.get('BROKER_URL', config.BROKER)
-app = Celery('tasks', broker=BROKER)
+app = Celery('tasks', broker=config.BROKER, backend=config.RESULT_BACKEND)
 
 
 def init():
     global app
-    app = Celery('tasks', broker=BROKER)
+    app = Celery('tasks', broker=config.BROKER, backend=config.RESULT_BACKEND)
 
 
 from .alerts import *
+from .labeling import *
 from .validate import *

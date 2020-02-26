@@ -3,6 +3,7 @@ from os import environ as env
 
 DEBUG = env.get('DEBUG', 'False') == 'True'
 BROKER = env.get('BROKER', 'redis://redis:6379/2')
+RESULT_BACKEND = env.get('RESULT_BACKEND', 'redis://redis:6379/3')
 
 TIPI_NAME = env.get('TIPI_NAME', 'TIPI')
 TIPI_DESCRIPTION = env.get('TIPI_DESCRIPTION', '')
@@ -29,6 +30,10 @@ VALIDATION_TIMEOUT = int(env.get('VALIDATION_TIMEOUT', '5'))
 CLEAN_EMAILS_TIMEOUT = int(env.get('CLEAN_EMAILS_TIMEOUT', '300'))
 
 ALERT_BANNER_URL = env.get('ALERT_BANNER_URL', '')
+
+CACHE_REDIS_DB = int(env.get('CACHE_REDIS_DB_NAME', '8'))
+CACHE_REDIS_HOST = env.get('CACHE_REDIS_HOST', 'redis')
+CACHE_REDIS_PORT = int(env.get('CACHE_REDIS_PORT', '6379'))
 
 try:
     from local_config import *
