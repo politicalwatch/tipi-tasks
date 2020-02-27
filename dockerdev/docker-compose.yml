@@ -22,10 +22,10 @@ services:
     expose:
       - "27017"
 
-  tipi_alerts:
+  tipi_tasks:
     restart: always
-    container_name: tipi_alerts
-    image: tipi_alerts
+    container_name: tipi_tasks
+    image: tipi_tasks
     build:
       context: ${APP_PATH}
       dockerfile: Dockerfile
@@ -33,7 +33,7 @@ services:
       PIPENV_VENV_IN_PROJECT: 1
       HOME: /app
       BROKER_URL: "redis://redis:6379/0"
-    command: pipenv run celery -A tipi_alerts worker -B -l info
+    command: pipenv run celery -A tipi_tasks worker -B -l info
     depends_on:
       - redis
       - db

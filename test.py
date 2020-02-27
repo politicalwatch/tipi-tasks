@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from tipi_alerts import alerts
+from tipi_tasks import alerts
 
 
 if __name__ == '__main__':
