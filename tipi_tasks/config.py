@@ -34,8 +34,3 @@ ALERT_BANNER_URL = env.get('ALERT_BANNER_URL', '')
 CACHE_REDIS_DB = int(env.get('CACHE_REDIS_DB_NAME', '8'))
 CACHE_REDIS_HOST = env.get('CACHE_REDIS_HOST', 'redis')
 CACHE_REDIS_PORT = int(env.get('CACHE_REDIS_PORT', '6379'))
-
-try:
-    from local_config import *
-except:
-    pass
