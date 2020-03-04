@@ -8,8 +8,7 @@ setup(
     author='danigm',
     packages=find_packages(),
     install_requires=[
-        'tipi-data @ https://github.com/politicalwatch/tipi-data@master'
-        'git+https://github.com/politicalwatch/tipi-data.git',
+        'tipi-data @ https://github.com/politicalwatch/tipi-data@master',
         'amqp==2.3.2',
         'billiard==3.5.0.5',
         'celery[redis]==4.2.1',
