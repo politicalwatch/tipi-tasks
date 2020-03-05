@@ -38,9 +38,12 @@ def extract_labels_from_text(text, tags):
                 __append_tag_to_founds(tags_found, tag_copy)
 
     return {
-        'topics': sorted(list(set([tag['topic'] for tag in tags_found]))),
-        'tags': sorted(tags_found, key=lambda t: (t['topic'], t['subtopic'], t['tag'])),
-    }
+            'status': 'SUCCESS',
+            'result': {
+                'topics': sorted(list(set([tag['topic'] for tag in tags_found]))),
+                'tags': sorted(tags_found, key=lambda t: (t['topic'], t['subtopic'], t['tag'])),
+            }
+        }
 
 
 def check_status_task(task_id):
@@ -48,5 +51,5 @@ def check_status_task(task_id):
     result = None
     st = task.status
     if st == 'SUCCESS':
-        result = task.get()
+        result = task.get()['result']
     return {'status': st, 'result': result}
