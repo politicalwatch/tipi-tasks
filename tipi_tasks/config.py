@@ -25,7 +25,7 @@ FROM_EMAIL = env.get('FROM_EMAIL', 'test@example.com')
 
 TEMPLATE_DIR = env.get('TEMPLATE_DIR', None)
 # validation timeout in days
-VALIDATION_TIMEOUT = int(env.get('VALIDATION_TIMEOUT', '5'))
+VALIDATION_TIMEOUT = int(env.get('VALIDATION_TIMEOUT', '30'))
 # Timeout to run the clean email task every X seconds
 CLEAN_EMAILS_TIMEOUT = int(env.get('CLEAN_EMAILS_TIMEOUT', '300'))
 
