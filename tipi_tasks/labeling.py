@@ -39,6 +39,7 @@ def extract_labels_from_text(text, tags):
 
     return {
             'status': 'SUCCESS',
+            'excerpt': text if len(text) <= config.SCANNED_TEXT_EXCERPT_SIZE else text[:config.SCANNED_TEXT_EXCERPT_SIZE-3]+' [...]',
             'result': {
                 'topics': sorted(list(set([tag['topic'] for tag in tags_found]))),
                 'tags': sorted(tags_found, key=lambda t: (t['topic'], t['subtopic'], t['tag'])),
@@ -48,8 +49,10 @@ def extract_labels_from_text(text, tags):
 
 def check_status_task(task_id):
     task = app.AsyncResult(task_id)
+    excerpt = None
     result = None
     st = task.status
     if st == 'SUCCESS':
+        excerpt = task.get()['excerpt']
         result = task.get()['result']
-    return {'status': st, 'result': result}
+    return {'status': st,  'excerpt': excerpt,'result': result}
