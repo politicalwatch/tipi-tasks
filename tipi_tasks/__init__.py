@@ -23,5 +23,5 @@ def init():
 
 
 from .alerts import *
-from .labeling import *
+from .tagger import *
 from .validate import *

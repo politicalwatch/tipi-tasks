@@ -22,7 +22,7 @@ def __append_tag_to_founds(tags_found, new_tag):
 
 
 @shared_task
-def extract_labels_from_text(text, tags):
+def extract_tags_from_text(text, tags):
     tags = pickle.loads(codecs.decode(tags.encode(), "base64"))
 
     tags_found = []
