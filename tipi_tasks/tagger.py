@@ -26,7 +26,7 @@ def extract_tags_from_text(text, tags):
     tags = pickle.loads(codecs.decode(tags.encode(), "base64"))
 
     tags_found = []
-    text = ''.join(text.splitlines())
+    text = ' '.join(text.splitlines())
     for line in text.split('.'):
         for tag in tags:
             try:
