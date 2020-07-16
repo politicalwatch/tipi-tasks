@@ -29,13 +29,16 @@ def extract_tags_from_text(text, tags):
     text = ''.join(text.splitlines())
     for line in text.split('.'):
         for tag in tags:
-            result = pcre.findall(tag['compiletag'], line)
-            times = len(result)
-            if times > 0:
-                tag_copy = tag.copy()
-                tag_copy.pop('compiletag')
-                tag_copy['times'] = times
-                __append_tag_to_founds(tags_found, tag_copy)
+            try:
+                result = pcre.findall(tag['compiletag'], line)
+                times = len(result)
+                if times > 0:
+                    tag_copy = tag.copy()
+                    tag_copy.pop('compiletag')
+                    tag_copy['times'] = times
+                    __append_tag_to_founds(tags_found, tag_copy)
+            except pcre.PCREError as e:
+                print(e)
 
     return {
             'status': 'SUCCESS',
