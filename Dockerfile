@@ -8,4 +8,4 @@ COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 COPY . /app/
 
-CMD celery -A tipi_tasks worker -B -l info --logfile=/tmp/celery.log
+CMD celery -A tipi_tasks worker -B -l info
