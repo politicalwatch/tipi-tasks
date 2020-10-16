@@ -1,7 +1,7 @@
 from celery import shared_task
 from tipi_data.models.scanned import Scanned
 
-@shared_task
+@periodic_task(run_every=timedelta(hours=12))
 def clean_documents():
     scans = Scanned.objects.filter(expiration__lte=datetime.date.today())
 
