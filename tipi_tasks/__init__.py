@@ -25,3 +25,4 @@ def init():
 from .alerts import *
 from .tagger import *
 from .validate import *
+from .scanned import *
