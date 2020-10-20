@@ -19,7 +19,7 @@ def notify_new_documents():
     creation = time.mktime(datetime.now().timetuple()) - ONE_DAY_IN_SECONDS
     creation_date = datetime.fromtimestamp(creation)
 
-    scans = Scanned.objects.filter(created__gte=creation_date)
+    scans = Scanned.objects.filter(created__gte=creation_date, verified=False)
 
     if len(scans) == 0:
         return
@@ -38,7 +38,7 @@ def notify_new_documents():
         'documents': scans
     }
 
-    send_email(['info@ciecode.es'],
-       'Documentos guardados',
+    send_email(['info@politicalwatch.es'],
+       'Nuevos documentos no verificados',
        template,
        context)
