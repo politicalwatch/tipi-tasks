@@ -1,5 +1,5 @@
 -i https://pypi.org/simple
-git+https://github.com/politicalwatch/tipi-data.git
+https://github.com/politicalwatch/tipi-data/archive/master.zip
 amqp==2.3.2
 billiard==3.5.0.5
 celery[redis]==4.2.1
