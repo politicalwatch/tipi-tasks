@@ -19,7 +19,7 @@ setup(
         'kombu==4.2.1',
         'markupsafe==1.1.0',
         'mongoengine==0.16.2',
-        'pymongo==3.7.2',
+        'pymongo==3.10.0',
         'python-pcre==0.7',
         'pytz==2018.7',
         'redis==2.10.6',
