@@ -25,7 +25,7 @@ setup(
         'redis==2.10.6',
         'requests==2.20.1',
         'sentry-sdk[celery]==0.14.1',
-        'six==1.12.0',
+        'six==1.13.0',
         'sparkpost==1.3.6',
         'urllib3==1.24.2',
         'vine==1.1.4',
