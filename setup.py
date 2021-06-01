@@ -27,7 +27,7 @@ setup(
         'sentry-sdk[celery]==0.14.1',
         'six==1.12.0',
         'sparkpost==1.3.6',
-        'urllib3==1.24.2',
+        'urllib3==1.26.5',
         'vine==1.1.4',
     ],
 )
