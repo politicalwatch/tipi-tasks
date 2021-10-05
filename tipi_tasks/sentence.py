@@ -59,6 +59,8 @@ def make_sentence(search):
         else:
             del search_dict['topic']
     for key, value in search_dict.items():
+        if key == 'knowledgebase':
+            continue
         if value:
             sentence = sentence + ' ' + _parse_field(key, value) + ','
     return sentence[0:len(sentence)-1] + "."

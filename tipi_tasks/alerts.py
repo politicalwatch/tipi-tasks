@@ -1,10 +1,11 @@
 import os
 import ast
+import json
 from datetime import datetime
 
 from celery import shared_task
 
-from tipi_data.models.alert import Alert, InitiativeAlert
+from tipi_data.repositories.alerts import Alerts, InitiativeAlerts
 
 from .mail import send_email
 from .sentence import make_sentence
@@ -21,19 +22,21 @@ def send_alerts():
     tmpl = os.path.join(dirname, 'alert.html')
     template = open(tmpl).read()
 
-    alerts = Alert.objects.filter(searches__validated=True)
+    alerts = Alerts.get_validated()
     for alert in alerts:
-        alert_to_send = {
-                'id': alert.id,
-                'searches': []
-                }
+        alert_to_send = {}
         searches = alert.searches.filter(validated=True)
         for search in searches:
-            initiatives = InitiativeAlert.objects(
-                    __raw__=ast.literal_eval(search.dbsearch)
-                ).exclude('content')
+            search_json = json.loads(search.search)
+            kb = search_json['knowledgebase']
+            initiatives = InitiativeAlerts.by_search(ast.literal_eval(search.dbsearch), kb).exclude('content')
+            if kb not in alert:
+                alert_to_send[kb] = {
+                    'id': alert.id,
+                    'searches': []
+                }
             if initiatives.count():
-                alert_to_send['searches'].append({
+                alert_to_send[kb]['searches'].append({
                     'hash': search.hash,
                     'search_sentence': make_sentence(search.search),
                     'initiatives': [
@@ -41,20 +44,26 @@ def send_alerts():
                         for initiative in initiatives
                         ]
                     })
-        if len(alert_to_send['searches']):
+
+        for kb in alert_to_send:
+            if not len(alert_to_send[kb]['searches']):
+                continue
+
+            mail_config = config.mail_config(kb)
             context = {
-                'tipi_name': config.TIPI_NAME,
-                'tipi_description': config.TIPI_DESCRIPTION,
-                'tipi_color': config.TIPI_COLOR,
-                'tipi_email': config.TIPI_EMAIL,
-                'tipi_frontend': config.TIPI_FRONTEND,
-                'tipi_backend': config.TIPI_BACKEND,
-                'banner_url': config.ALERT_BANNER_URL,
+                'tipi_name': mail_config['NAME'],
+                'tipi_description': mail_config['DESCRIPTION'],
+                'tipi_color': mail_config['COLOR'],
+                'tipi_email': mail_config['EMAIL'],
+                'tipi_frontend': mail_config['FRONTEND'],
+                'tipi_backend': mail_config['BACKEND'],
+                'banner_url': mail_config['BANNER_URL'],
                 'alert': alert_to_send
             }
             send_email([alert.email],
-                       config.ALERT_EMAIL_SUBJECT,
+                       mail_config['ALERT_SUBJECT'],
                        template,
+                       mail_config,
                        context)
 
-    InitiativeAlert.drop_collection()
+    InitiativeAlerts.clear()

@@ -36,3 +36,31 @@ CACHE_REDIS_HOST = env.get('CACHE_REDIS_HOST', 'redis')
 CACHE_REDIS_PORT = int(env.get('CACHE_REDIS_PORT', '6379'))
 
 SCANNED_TEXT_EXCERPT_SIZE = int(env.get('SCANNED_TEXT_EXCERPT_SIZE', '500'))
+
+def mail_config(kb):
+    roots = {
+            'tipiciudadano': 'TIPI',
+            'parlamento2030': 'P2030'
+            }
+
+    fields = [
+            'NAME',
+            'FROM',
+            'DESCRIPTION',
+            'EMAIL',
+            'FRONTEND',
+            'BACKEND',
+            'COLOR',
+            'API',
+            'BANNER_URL',
+            'ALERT_SUBJECT'
+            ]
+
+    root = roots[kb]
+    configuration = {}
+
+    for field in fields:
+        key = root + '_' + field
+        configuration[field] = env.get(key)
+
+    return configuration
