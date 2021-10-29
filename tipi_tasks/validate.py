@@ -41,9 +41,13 @@ def send_validation_emails():
                     ),
                 'timeout': timeout
             }
+            search_json = json.loads(search.search)
+            kb = search_json['knowledgebase']
+            mail_config = config.mail_config(kb)
             send_email([alert.email],
                        config.VALIDATION_EMAIL_SUBJECT,
                        template,
+                       mail_config,
                        context)
             search.validation_email_sent=True
             search.validation_email_sent_date=datetime.now()
