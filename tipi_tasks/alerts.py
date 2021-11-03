@@ -58,7 +58,7 @@ def send_alerts():
                 'tipi_frontend': mail_config['FRONTEND'],
                 'tipi_backend': mail_config['BACKEND'],
                 'banner_url': mail_config['BANNER_URL'],
-                'alert': alert_to_send
+                'alert': alert_to_send[kb]
             }
             send_email([alert.email],
                        mail_config['ALERT_SUBJECT'],
