@@ -28,6 +28,10 @@ def extract_tags_from_text(text, tags):
     tags_found = []
     text = ' '.join(text.splitlines())
     for line in text.split('.'):
+        # Skip lines with no value to make it faster.
+        if len(line) < 2 or text.isdigit():
+            continue
+
         for tag in tags:
             try:
                 result = pcre.findall(tag['compiletag'], line)
