@@ -39,8 +39,8 @@ SCANNED_TEXT_EXCERPT_SIZE = int(env.get('SCANNED_TEXT_EXCERPT_SIZE', '500'))
 
 def mail_config(kb):
     roots = {
-            'tipiciudadano': 'TIPI',
-            'parlamento2030': 'P2030'
+            'politicas': 'TIPI',
+            'ods': 'P2030'
             }
 
     fields = [
