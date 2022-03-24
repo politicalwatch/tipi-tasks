@@ -42,7 +42,7 @@ def send_validation_emails():
                 'timeout': timeout
             }
             search_json = json.loads(search.search)
-            kb = search_json['knowledgebase']
+            kb = search_json['knowledgebase'] if 'knowledgebase' in search_json else 'politicas'
             mail_config = config.mail_config(kb)
             send_email([alert.email],
                        config.VALIDATION_EMAIL_SUBJECT,
