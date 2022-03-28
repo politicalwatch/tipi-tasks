@@ -35,7 +35,7 @@ def send_alerts():
                 search_json = json.loads(search.search)
                 kb = search_json['knowledgebase']
                 initiatives = InitiativeAlerts.by_search(ast.literal_eval(search.dbsearch), kb).exclude('content')
-                if kb not in alert:
+                if kb not in alert_to_send:
                     alert_to_send[kb] = {
                         'id': alert.id,
                         'searches': []
