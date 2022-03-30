@@ -1,10 +1,10 @@
 import os
 import ast
 import json
-import logging
 from datetime import datetime
 
 from celery import shared_task
+from celery.utils.log import get_task_logger
 
 from tipi_data.repositories.alerts import Alerts, InitiativeAlerts
 
@@ -13,7 +13,7 @@ from .sentence import make_sentence
 from . import config
 
 
-log = logging.getLogger(__name__)
+log = get_task_logger(__name__)
 
 
 @shared_task
@@ -25,7 +25,6 @@ def send_alerts():
 
     tmpl = os.path.join(dirname, 'alert.html')
     template = open(tmpl).read()
-
     alerts = Alerts.get_validated()
     for alert in alerts:
         alert_to_send = {}
