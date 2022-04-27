@@ -4,6 +4,7 @@ __pycache__/
 .cache/
 .ipython/
 .venv/
+.env
 Pipfile.lock
 local_config.py
 celerybeat-schedule
