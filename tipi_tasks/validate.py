@@ -4,6 +4,7 @@ from datetime import datetime, date, timedelta
 
 from celery import shared_task
 from celery.decorators import periodic_task
+from celery.utils.log import get_task_logger
 
 from tipi_data.models.alert import Alert
 
@@ -11,6 +12,17 @@ from .mail import send_email
 from .sentence import make_sentence
 from . import config
 
+
+log = get_task_logger(__name__)
+
+
+def get_project_name(kb):
+    names = {
+        'politicas': 'QHLD',
+        'ods': 'Parlamento2030'
+    }
+
+    return names[kb]
 
 @shared_task
 def send_validation_emails():
@@ -30,8 +42,10 @@ def send_validation_emails():
         for search in searches:
             time_passed = (datetime.now() - search.created).days
             timeout = config.VALIDATION_TIMEOUT - time_passed
+            search_json = json.loads(search.search)
+            kb = search_json['knowledgebase'] if 'knowledgebase' in search_json else 'politicas'
             context = {
-                'tipi_name': config.TIPI_NAME,
+                'tipi_name': get_project_name(kb),
                 'tipi_email': config.TIPI_EMAIL,
                 'search_sentence': make_sentence(search.search),
                 'validate_url': "{}/emails/validate/{}/{}".format(
@@ -41,11 +55,9 @@ def send_validation_emails():
                     ),
                 'timeout': timeout
             }
-            search_json = json.loads(search.search)
-            kb = search_json['knowledgebase'] if 'knowledgebase' in search_json else 'politicas'
             mail_config = config.mail_config(kb)
             send_email([alert.email],
-                       config.VALIDATION_EMAIL_SUBJECT,
+                       mail_config['VALIDATION_SUBJECT'],
                        template,
                        mail_config,
                        context)

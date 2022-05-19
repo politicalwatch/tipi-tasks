@@ -53,7 +53,8 @@ def mail_config(kb):
             'COLOR',
             'API',
             'BANNER_URL',
-            'ALERT_SUBJECT'
+            'ALERT_SUBJECT',
+            'VALIDATION_SUBJECT',
             ]
 
     root = roots[kb]
