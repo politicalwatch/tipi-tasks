@@ -17,7 +17,7 @@ search_fields_mapper = {
         'place': 'en {}',
         'type': 'que sean {}',
         'reference': 'con referencia {}',
-        'text': 'que contengan en el título "{}"'
+        'text': 'que contengan "{}"'
         }
 
 def _rreplace(s, old, new, occurrence):
