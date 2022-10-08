@@ -1,7 +1,3 @@
-'''
-Iniciativas sobre temática1, relacionadas con término1, término2, de Autor, firmadas por Diputado1, Diputado2 y Diputado3, registradas desde xx/xx/xx, hasta xx/xx/xx, que estén estado de tramitación, en Comisión, que sean Tipo de iniciativa1, con referencia XXX/XXXXXXXX, que contenga en el título xxxxxxxxxxxxxxxxx
-'''
-
 import json
 
 
