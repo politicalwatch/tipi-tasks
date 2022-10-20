@@ -37,6 +37,9 @@ def extract_tags_from_text(text, tags):
                 result = pcre.findall(tag['compiletag'], line)
                 times = len(result)
                 if times > 0:
+                    # Uncomment and change the tag to learn which line is getting tagged with the specific tag.
+                    # if tag['tag'] == 'Inclusión multicultural':
+                        # print(line)
                     tag_copy = tag.copy()
                     tag_copy.pop('compiletag')
                     tag_copy['times'] = times
