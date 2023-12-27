@@ -12,3 +12,4 @@ celerybeat-schedule.db
 build/
 dist/
 tipi_tasks.egg-info/
+.DS_Store
