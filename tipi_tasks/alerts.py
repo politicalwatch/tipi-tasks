@@ -23,8 +23,10 @@ def send_alerts():
     else:
         dirname = os.path.join(os.path.dirname(__file__), 'templates')
 
-    tmpl = os.path.join(dirname, 'alert.html')
-    template = open(tmpl).read()
+    tmpl_qhld = os.path.join(dirname, 'alert.html')
+    tmpl_p2030 = os.path.join(dirname, 'alert_p2030.html')
+    template_qhld = open(tmpl_qhld).read()
+    template_p2030 = open(tmpl_p2030).read()
     alerts = Alerts.get_validated()
     for alert in alerts:
         alert_to_send = {}
@@ -55,6 +57,11 @@ def send_alerts():
             try:
                 if not len(alert_to_send[kb]['searches']):
                     continue
+                
+                if kb == 'politicas':
+                    template = template_qhld
+                elif kb == 'ods':
+                    template = template_p2030
 
                 mail_config = config.mail_config(kb)
                 context = {
