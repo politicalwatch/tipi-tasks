@@ -46,7 +46,12 @@ def send_alerts():
                         'hash': search.hash,
                         'search_sentence': make_sentence(search.search),
                         'initiatives': [
-                            {'id': initiative.id, 'title': initiative.title}
+                            {
+                                'id': initiative.id,
+                                'title': initiative.title,
+                                'status': initiative.status,
+                                'author_parliamentarygroups': initiative.author_parliamentarygroups
+                            }
                             for initiative in initiatives
                             ]
                         })
