@@ -49,7 +49,7 @@ def _parse_field(key, value):
 
 def make_sentence(search):
     search_dict = json.loads(search)
-    sentence = 'Iniciativas'
+    sentence = ''
     if "subtopics" in search_dict.keys():
         if search_dict['subtopics'] == []:
             del search_dict['subtopics']
