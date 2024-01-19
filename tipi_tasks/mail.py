@@ -20,6 +20,26 @@ status_mapping = {
     "No celebrada": "error"
 }
 
+ods_color_mapping = {
+    'ODS 1': '#eb1c2d',
+    'ODS 2': '#d3a029',
+    'ODS 3': '#4c9f38',
+    'ODS 4': '#c52333',
+    'ODS 5': '#ed4135',
+    'ODS 6': '#00aed9',
+    'ODS 7': '#fdb713',
+    'ODS 8': '#8f1838',
+    'ODS 9': '#f06a38',
+    'ODS 10': '#dd1367',
+    'ODS 11': '#f69c39',
+    'ODS 12': '#cf8d2a',
+    'ODS 13': '#48773e',
+    'ODS 14': '#007dbc',
+    'ODS 15': '#5cb84d',
+    'ODS 16': '#02558b',
+    'ODS 17': '#183668',
+}
+
 legislative_type_ids = ["120", "121", "122", "123", "124", "125", "127", "130", "131", "132"]
 political_orientiation_type_ids = ["161", "162", "171", "173","200", "201", "225", "430"]
 
@@ -36,7 +56,7 @@ env.tests['not_in'] = is_not_in
 def sparkpost_email(recipients, subject, template, mail_config, context={}):
     template = env.from_string(template)
     try:
-        html = template.render(**context, status_mapping=status_mapping, legislative_type_ids=legislative_type_ids, political_orientiation_type_ids=political_orientiation_type_ids)
+        html = template.render(**context, status_mapping=status_mapping, ods_color_mapping=ods_color_mapping, legislative_type_ids=legislative_type_ids, political_orientiation_type_ids=political_orientiation_type_ids)
     except Exception as e:
         print(f"Template error: {e}")
     sp = sparkpost.SparkPost(mail_config['API'])
