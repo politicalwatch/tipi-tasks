@@ -116,6 +116,7 @@
   
             <!-- Espaciador -->
             <tr><td></td></tr>
+
             {% set other_initiatives = search.initiatives|selectattr('initiative_type', 'not_in', legislative_type_ids+political_orientiation_type_ids) %}
             {% for initiative in other_initiatives %} <!-- OTRAS -->
             <tr>
@@ -138,9 +139,8 @@
             <tr>
               <td style="text-align: center;">
                 <p style="color: #1D1D1B; text-align: center; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 400; line-height: 150%;">Con QHLD, cualquier persona u organización, con independencia de su origen, recursos o capacidades, puede conocer lo que ocurre en el Congreso de los Diputados. Lo entendemos como un servicio público y nos comprometemos a ofrecerlo de forma abierta y gratuita.</p>
-        
-                <p style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-transform: uppercase;"> Ayúdanos a cumplir nuestro compromiso <br>
-                  <a href="https://politicalwatch.es/participa/#dona-y-colabora" style="color: #0081B9; text-decoration-line: underline; ">politicalwatch.es/participa#dona-y-colabora</a></p>
+                <p style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-transform: uppercase;"> Ayúdanos a cumplir nuestro compromiso</p>
+                <p style="margin-top:32px"><a href="https://politicalwatch.es/participa/#dona-y-colabora" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Haz una donación</a></p>
               </td>
             </tr>
             {% endif %}
@@ -148,12 +148,14 @@
             {% endfor %} <!-- SEARCHES -->
             
   
+            <!--
             <tr>
               <td colspan="2" style="text-align: center;">
                 <a href="{{tipi_frontend}}/buscar" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Consulta el resto de iniciativas</a>
               </td>
             </tr>
-  
+            -->
+
             <!-- Espaciador -->
             <tr><td></td></tr>
           </table>
@@ -167,15 +169,14 @@
       <tr>
         <td style="text-align: center;">
           <p style="color: #1D1D1B; text-align: center; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 400; line-height: 150%;">Con QHLD, cualquier persona u organización, con independencia de su origen, recursos o capacidades, puede conocer lo que ocurre en el Congreso de los Diputados. Lo entendemos como un servicio público y nos comprometemos a ofrecerlo de forma abierta y gratuita.</p>
-  
-          <p style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-transform: uppercase;"> Ayúdanos a cumplir nuestro compromiso <br>
-            <a href="https://politicalwatch.es/participa/#dona-y-colabora" style="color: #0081B9; text-decoration-line: underline; ">politicalwatch.es/participa#dona-y-colabora</a></p>
+          <p style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-transform: uppercase;"> Ayúdanos a cumplir nuestro compromiso</p>
+          <p style="margin-top:32px"><a href="https://politicalwatch.es/participa/#dona-y-colabora" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Haz una donación</a></p>
         </td>
       </tr>
       <tr>
         <td style="color: #1D1D1B; opacity: 0.5; text-align: center; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 400; line-height: 150%;">
-          <p>En cumplimiento del nuevo Reglamento General de Protección de Datos (RGPD) 2016/679 te informamos que tus datos forman parte de un fichero responsabilidad de la Fundación Salvador Soler con el fin exclusivo de enviarte notificaciones sobre la actividad parlamentaria de tus temáticas de interés.<br/>
-            Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición al tratamiento de tus datos personales enviando una solicitud a la atención del Delegado de Protección de Datos de la Fundación Salvador Soler: <br/>
+          <p>En cumplimiento del nuevo Reglamento General de Protección de Datos (RGPD) 2016/679 te informamos que tus datos forman parte de un fichero responsabilidad de la Fundación Salvador Soler con el fin exclusivo de enviarte notificaciones sobre la actividad parlamentaria de tus temáticas de interés.</p>
+          <p>Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición al tratamiento de tus datos personales enviando una solicitud a la atención del Delegado de Protección de Datos de la Fundación Salvador Soler: <br/>
             Dirección: Avenida Cardenal Herrera Oria 63, 3º Izq. 28034. Madrid. <br/>
             Email: coordinacion@unmundosalvadorsoler.org<br/>
             Teléfono: 691 691 810
