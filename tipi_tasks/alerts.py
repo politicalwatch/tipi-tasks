@@ -23,7 +23,7 @@ def send_alerts():
     else:
         dirname = os.path.join(os.path.dirname(__file__), 'templates')
 
-    tmpl_qhld = os.path.join(dirname, 'alert.html')
+    tmpl_qhld = os.path.join(dirname, 'alert_qhld.html')
     tmpl_p2030 = os.path.join(dirname, 'alert_p2030.html')
     template_qhld = open(tmpl_qhld).read()
     template_p2030 = open(tmpl_p2030).read()
@@ -50,7 +50,12 @@ def send_alerts():
                                 'id': initiative.id,
                                 'title': initiative.title,
                                 'status': initiative.status,
-                                'author_parliamentarygroups': initiative.author_parliamentarygroups
+                                'author_parliamentarygroups': getattr(initiative, 'author_parliamentarygroups', None),
+                                'author_deputies': getattr(initiative, 'author_deputies', None),
+                                'author_others': getattr(initiative, 'author_others', None),
+                                'reason': getattr(initiative, 'reason', None),
+                                'initiative_type': initiative.initiative_type,
+                                'tags': [tag['tag'] for item in initiative.tagged if item['knowledgebase'] == kb for tag in item['tags']],
                             }
                             for initiative in initiatives
                             ]
