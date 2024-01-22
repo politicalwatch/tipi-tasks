@@ -7,6 +7,7 @@ from celery import shared_task
 from celery.utils.log import get_task_logger
 
 from tipi_data.repositories.alerts import Alerts, InitiativeAlerts
+from tipi_data.repositories.topics import Topics
 
 from .mail import send_email
 from .sentence import make_sentence
@@ -18,6 +19,12 @@ log = get_task_logger(__name__)
 
 @shared_task
 def send_alerts():
+    def get_topic_shortname(topic_name, topics):
+        for topic in topics:
+            if topic['name'] == topic_name:
+                return topic['shortname']
+        return None
+    
     if getattr(config, 'TEMPLATE_DIR') and config.TEMPLATE_DIR:
         dirname = config.TEMPLATE_DIR
     else:
@@ -28,6 +35,7 @@ def send_alerts():
     template_qhld = open(tmpl_qhld).read()
     template_p2030 = open(tmpl_p2030).read()
     alerts = Alerts.get_validated()
+    all_topics = Topics.get_all()
     for alert in alerts:
         alert_to_send = {}
         searches = alert.searches.filter(validated=True)
@@ -55,11 +63,13 @@ def send_alerts():
                                 'author_others': getattr(initiative, 'author_others', None),
                                 'reason': getattr(initiative, 'reason', None),
                                 'initiative_type': initiative.initiative_type,
-                                'tags': [tag['tag'] for item in initiative.tagged if item['knowledgebase'] == kb for tag in item['tags']],
+                                'topics': [get_topic_shortname(topic, all_topics) for item in initiative.tagged if item['knowledgebase'] == kb for topic in item['topics']],
                             }
                             for initiative in initiatives
                             ]
                         })
+                else:
+                    print(f"No initiatives alerts for {search.search}")
             except Exception as e:
                 log.error(f"{alert.email}: {e}")
 

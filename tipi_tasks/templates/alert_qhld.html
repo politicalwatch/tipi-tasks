@@ -60,12 +60,12 @@
               {% endif %}
               {% endfor %}
               {% endif %}
-              {% if initiative.tags %}
+              {% if initiative.topics %}
               <p style="margin: 0 0 16px 0; line-height: 2.5;">
-                {% for tag in initiative.tags[0:3] %}
-                <a href="" style="color: #1D1D1B; font-family: Arial; font-size: 12px; font-style: normal; font-weight: 700; line-height: 16px; text-transform: uppercase; padding: 8px; background:#A3D5C8; text-decoration: none; display: inline-block;">{{tag}}</a>
+                {% for topic in initiative.topics[0:3] %}
+                <a href="" style="color: #1D1D1B; font-family: Arial; font-size: 12px; font-style: normal; font-weight: 700; line-height: 16px; text-transform: uppercase; padding: 8px; background:#A3D5C8; text-decoration: none; display: inline-block;">{{topic}}</a>
                 {% endfor %}
-                {% if initiative.tags|length > 3 %}
+                {% if initiative.topics|length > 3 %}
                 <a href="" style="color: #1D1D1B; font-family: Arial; font-size: 12px; font-style: normal; font-weight: 700; line-height: 16px; text-transform: uppercase; padding: 8px; background:#A3D5C8; text-decoration: none; display: inline-block;">...</a>
                 {% endif %}
               </p>
@@ -126,7 +126,6 @@
             </tr>
             {% endfor %} <!-- OTRAS -->
             
-  
             <!-- Espaciador -->
             <tr><td></td></tr>
 

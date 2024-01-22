@@ -17,7 +17,6 @@
             <tr style="vertical-align: top;">
               <td>
                 <p style="margin: 0; padding-top: 32px; width: 82px; color:#DD766F; font-family: Arial; font-size: 64px; font-style: normal; font-weight: 700; line-height: 100%; border-top: 8px solid #DD766F">{{search.initiatives|length}}</p>
-                
               </td>
               <td style="text-align: right;">
                 <a href="{{tipi_backend}}/emails/unsubscribe/{{alert.id}}/{{search.hash}}" style="color: #354250; font-family: Arial; font-size: 12px; font-style: normal; font-weight: 700; text-decoration: none; border: 4px solid #354250; white-space: nowrap; padding: 8px; line-height: 24px; text-transform: uppercase; ">Cancelar Alerta <img style="vertical-align: middle;" src="{{tipi_frontend}}/img/alerts/bell.png"></a>
@@ -61,12 +60,12 @@
                 {% endif %}
                 {% endfor %}
                 {% endif %}
-                {% if initiative.tags %}
+                {% if initiative.topics %}
                 <p style="margin: 0 0 16px 0; line-height: 2.5;">
-                  {% for tag in initiative.tags[0:3] %}
-                  <a href="" style="color: #FFF; font-family: Arial; font-size: 12px; font-style: normal; font-weight: 700; line-height: 16px; text-transform: uppercase; padding: 8px; background:{{ods_color_mapping[tag]}}; text-decoration: none; display: inline-block;">{{tag}}</a>
+                  {% for topic in initiative.topics[0:3] %}
+                  <a href="" style="color: #FFF; font-family: Arial; font-size: 12px; font-style: normal; font-weight: 700; line-height: 16px; text-transform: uppercase; padding: 8px; background:{{ods_color_mapping[topic]}}; text-decoration: none; display: inline-block;">{{topic}}</a>
                   {% endfor %}
-                  {% if initiative.tags|length > 3 %}
+                  {% if initiative.topics|length > 3 %}
                   <a href="" style="color: #1D1D1B; font-family: Arial; font-size: 12px; font-style: normal; font-weight: 700; line-height: 16px; text-transform: uppercase; padding: 8px; background:#F5F6F8; text-decoration: none; display: inline-block;">...</a>
                   {% endif %}
                 </p>
