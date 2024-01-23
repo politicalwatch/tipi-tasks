@@ -1,6 +1,7 @@
 import os
 import ast
 import json
+import urllib
 from datetime import datetime
 
 from celery import shared_task
@@ -24,6 +25,16 @@ def send_alerts():
             if topic['name'] == topic_name:
                 return topic['shortname']
         return None
+    
+    def get_search_query_params(search):
+        flat_search = {}
+        for key, value in search.items():
+            if isinstance(value, list):
+                for i, item in enumerate(value):
+                    flat_search[f"{key}[{i}]"] = item
+            else:
+                flat_search[key] = value
+        return urllib.parse.urlencode(flat_search)
     
     if getattr(config, 'TEMPLATE_DIR') and config.TEMPLATE_DIR:
         dirname = config.TEMPLATE_DIR
@@ -53,6 +64,7 @@ def send_alerts():
                     alert_to_send[kb]['searches'].append({
                         'hash': search.hash,
                         'search_sentence': make_sentence(search.search),
+                        'search_query_params': get_search_query_params(search_json),
                         'initiatives': [
                             {
                                 'id': initiative.id,
@@ -63,7 +75,7 @@ def send_alerts():
                                 'author_others': getattr(initiative, 'author_others', None),
                                 'reason': getattr(initiative, 'reason', None),
                                 'initiative_type': initiative.initiative_type,
-                                'topics': [get_topic_shortname(topic, all_topics) for item in initiative.tagged if item['knowledgebase'] == kb for topic in item['topics']],
+                                'topics': [get_topic_shortname(topic, all_topics) for item in initiative.tagged if item['knowledgebase'] == kb for topic in item['topics']]
                             }
                             for initiative in initiatives
                             ]

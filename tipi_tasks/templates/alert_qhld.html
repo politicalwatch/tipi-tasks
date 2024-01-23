@@ -82,7 +82,7 @@
             <!-- Espaciador -->
             <tr><td></td></tr>
 
-            {% set political_orientiation_initiatives = search.initiatives|selectattr('initiative_type', 'in', political_orientiation_type_ids) %}
+            {% set political_orientiation_initiatives = search.initiatives|selectattr('initiative_type', 'in', political_orientiation_type_ids)|list %}
             {% for initiative in political_orientiation_initiatives %} <!-- ORIENTACION POLITICA -->
             <tr>
               <td colspan="2" style="padding-bottom: 0;">
@@ -117,7 +117,7 @@
             <!-- Espaciador -->
             <tr><td></td></tr>
 
-            {% set other_initiatives = search.initiatives|selectattr('initiative_type', 'not_in', legislative_type_ids+political_orientiation_type_ids) %}
+            {% set other_initiatives = search.initiatives|selectattr('initiative_type', 'not_in', legislative_type_ids+political_orientiation_type_ids)|list %}
             {% for initiative in other_initiatives %} <!-- OTRAS -->
             <tr>
               <td colspan="2" style="padding-bottom: 0;">
@@ -126,6 +126,17 @@
             </tr>
             {% endfor %} <!-- OTRAS -->
             
+            {% if legislative_initiatives|length > 10 or political_orientation_initiatives|length > 20 or other_initiatives|length > 20 %}
+            <!-- Espaciador -->
+            <tr><td></td></tr>
+
+            <tr>
+              <td colspan="2" style="text-align: center;">
+                <a href="{{tipi_frontend}}/resultados/{{search.search_query_params}}" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Consulta el resto de iniciativas</a>
+              </td>
+            </tr>
+            {% endif %}
+
             <!-- Espaciador -->
             <tr><td></td></tr>
 
@@ -146,15 +157,6 @@
 
             {% endfor %} <!-- SEARCHES -->
             
-  
-            <!--
-            <tr>
-              <td colspan="2" style="text-align: center;">
-                <a href="{{tipi_frontend}}/buscar" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Consulta el resto de iniciativas</a>
-              </td>
-            </tr>
-            -->
-
             <!-- Espaciador -->
             <tr><td></td></tr>
           </table>
