@@ -56,7 +56,7 @@ def make_sentence(search):
         else:
             del search_dict['topic']
     for key, value in search_dict.items():
-        if key == 'knowledgebase':
+        if key == 'knowledgebase' or key == 'ignoretagless':
             continue
         if value:
             sentence = sentence + ' ' + _parse_field(key, value) + ','
