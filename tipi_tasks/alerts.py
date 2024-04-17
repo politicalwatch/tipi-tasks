@@ -114,4 +114,3 @@ def send_alerts():
             except Exception as e:
                 log.error(f"{alert.email}: {e}")
 
-    InitiativeAlerts.clear()
