@@ -78,7 +78,7 @@
             </tr>
             {% endif %}
             {% endfor %}<!-- LEGISLATIVAS -->
-  
+
             <!-- Espaciador -->
             <tr><td></td></tr>
 
@@ -113,7 +113,7 @@
               </td>
             </tr>
             {% endfor %} <!-- ORIENTACION POLITICA -->
-  
+
             <!-- Espaciador -->
             <tr><td></td></tr>
 
@@ -121,7 +121,11 @@
             {% for initiative in other_initiatives %} <!-- OTRAS -->
             <tr>
               <td colspan="2" style="padding-bottom: 0;">
-                <p style="margin: 0 0 8px 0;"><a href="{{tipi_frontend}}/iniciativas/{{initiative.id}}" style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-decoration: none;">{{initiative.title|truncate(250, True)}}</a></p>
+                <p style="margin: 0 0 8px 0;">
+                  <a href="{{tipi_frontend}}/iniciativas/{{initiative.id}}" style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-decoration: none;">
+                    <img src="{{tipi_frontend}}/img/alerts/status/{{status_mapping[initiative.status]|default('neutral')}}.png" style="vertical-align: middle;"> {{initiative.title|truncate(250, True)}}
+                  </a>
+                </p>
               </td>
             </tr>
             {% endfor %} <!-- OTRAS -->
@@ -136,12 +140,12 @@
               </td>
             </tr>
             {% endif %}
-  
+
             <!-- Espaciador -->
             <tr><td></td></tr>
 
             {% endfor %} <!-- SEARCHES -->
-  
+
             <!-- Espaciador -->
             <tr><td></td></tr>
           </table>
