@@ -25,7 +25,7 @@ def send_alerts():
             if topic['name'] == topic_name:
                 return topic['shortname']
         return None
-    
+
     def get_search_query_params(search):
         flat_search = {}
         for key, value in search.items():
@@ -35,7 +35,7 @@ def send_alerts():
             else:
                 flat_search[key] = value
         return urllib.parse.urlencode(flat_search)
-    
+
     if getattr(config, 'TEMPLATE_DIR') and config.TEMPLATE_DIR:
         dirname = config.TEMPLATE_DIR
     else:
@@ -89,7 +89,7 @@ def send_alerts():
             try:
                 if not len(alert_to_send[kb]['searches']):
                     continue
-                
+
                 if kb == 'politicas':
                     template = template_qhld
                 elif kb == 'ods':
@@ -114,3 +114,4 @@ def send_alerts():
             except Exception as e:
                 log.error(f"{alert.email}: {e}")
 
+    InitiativeAlerts.clear()
