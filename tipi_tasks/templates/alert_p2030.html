@@ -24,7 +24,7 @@
             </tr>
             <tr style="vertical-align: top;">
               <td colspan="2" style="padding-top: 0;">
-                <p style="margin: 0; color: #354250; font-family: Arial; font-size: 32px; font-style: normal; font-weight: 700; line-height: 100%;"><span style="font-size: 24px;">iniciativas</span> <br>{{search.search_sentence}}</p>
+                <p style="margin: 0; color: #354250; font-family: Arial; font-size: 32px; font-style: normal; font-weight: 700; line-height: 100%;"><span style="font-size: 24px;">Iniciativa{{ 's' if search.initiatives|length > 1 else '' }}</span> <br>{{search.search_sentence}}</p>
               </td>
             </tr>
           </table>
