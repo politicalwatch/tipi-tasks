@@ -81,8 +81,8 @@
                   <tr><td></td></tr>
                   {% endif %}
       
-                  {% set political_orientiation_initiatives = search.initiatives|selectattr('initiative_type', 'in', political_orientiation_type_ids)|list %}
-                  {% for initiative in political_orientiation_initiatives %} <!-- ORIENTACION POLITICA -->
+                  {% set political_orientation_initiatives = search.initiatives|selectattr('initiative_type', 'in', political_orientiation_type_ids)|list %}
+                  {% for initiative in political_orientation_initiatives %} <!-- ORIENTACION POLITICA -->
                   <tr>
                     <td colspan="2" style="padding-bottom: 0;">
                       {% if initiative.reason %}
