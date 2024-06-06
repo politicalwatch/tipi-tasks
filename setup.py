@@ -9,7 +9,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "tipi-data @ git+https://github.com/politicalwatch/tipi-data.git",
-        "celery[redis]==4.4.7",
+        "celery[redis]==5.0.5",
         "certifi==2024.6.2",
         "chardet==3.0.4",
         "idna==3.7",
