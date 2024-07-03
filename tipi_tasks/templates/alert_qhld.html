@@ -31,7 +31,7 @@
               <td colspan="2" style="padding: 0;">
                 <table cellspacing="0" cellpadding="32">
                   {% set legislative_initiatives = search.initiatives|selectattr('initiative_type', 'in', legislative_type_ids)|list %}
-                  {% for initiative in legislative_initiatives %}<!-- LEGISLATIVAS -->
+                  {% for initiative in legislative_initiatives[0:10] %}<!-- LEGISLATIVAS -->
                   {% if loop.index is odd %}
                   <tr>
                   {% endif %}
@@ -82,7 +82,7 @@
                   {% endif %}
       
                   {% set political_orientation_initiatives = search.initiatives|selectattr('initiative_type', 'in', political_orientiation_type_ids)|list %}
-                  {% for initiative in political_orientation_initiatives %} <!-- ORIENTACION POLITICA -->
+                  {% for initiative in political_orientation_initiatives[0:20] %} <!-- ORIENTACION POLITICA -->
                   <tr>
                     <td colspan="2" style="padding-bottom: 0;">
                       {% if initiative.reason %}
@@ -119,7 +119,7 @@
                   {% endif %}
       
                   {% set other_initiatives = search.initiatives|selectattr('initiative_type', 'not_in', legislative_type_ids+political_orientiation_type_ids)|list %}
-                  {% for initiative in other_initiatives %} <!-- OTRAS -->
+                  {% for initiative in other_initiatives[0:20] %} <!-- OTRAS -->
                   <tr>
                     <td colspan="2" style="padding-bottom: 0;">
                       <p style="margin: 0 0 8px 0;">
