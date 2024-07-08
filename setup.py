@@ -10,7 +10,7 @@ setup(
     install_requires=[
         "tipi-data @ git+https://github.com/politicalwatch/tipi-data.git",
         "celery[redis]==4.4.7",
-        "certifi==2024.6.2",
+        "certifi==2024.7.4",
         "chardet==3.0.4",
         "idna==3.7",
         "jinja2>=3.1.0",
