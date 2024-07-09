@@ -39,7 +39,7 @@
                     {% if initiative.reason %}
                     <p style="margin: 0 0 8px 0;"><span style="padding: 2px; background: #f4e4b0; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">{{initiative.reason|upper}}</span></p>
                     {% endif %}
-                    <p style="margin: 0 0 8px 0;"><a href="{{tipi_frontend}}/iniciativas/{{initiative.id}}" style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-decoration: none;">{{initiative.title|truncate(250, True)}}</a></p>
+                    <p style="margin: 0 0 8px 0;"><a href="{{tipi_frontend}}/iniciativas/{{initiative.id}}?utm_source=alerts&utm_medium=email&utm_campaign=qhld&utm_content=legislative_initiatives" style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-decoration: none;">{{initiative.title|truncate(250, True)}}</a></p>
                     {% if initiative.author_parliamentarygroups %}
                     {% for parliamentarygroup in initiative.author_parliamentarygroups %}
                     <p style="margin: 0 0 16px 0; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; "><img src="{{tipi_frontend}}/img/alerts/gp/{{parliamentarygroup|replace(" ", "_")}}.png" style="vertical-align: middle; margin-right: 8px;">{{parliamentarygroup}}</p>
@@ -88,7 +88,7 @@
                       {% if initiative.reason %}
                       <p style="margin: 0 0 8px 0;"><span style="padding: 2px; background: #f4e4b0; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">{{initiative.reason|upper}}</span></p>
                       {% endif %}
-                      <p style="margin: 0 0 8px 0;"><a href="{{tipi_frontend}}/iniciativas/{{initiative.id}}" style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-decoration: none;">{{initiative.title|truncate(250, True)}}</a></p>
+                      <p style="margin: 0 0 8px 0;"><a href="{{tipi_frontend}}/iniciativas/{{initiative.id}}?utm_source=alerts&utm_medium=email&utm_campaign=qhld&utm_content=political_orientation_initiatives" style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-decoration: none;">{{initiative.title|truncate(250, True)}}</a></p>
                       {% if initiative.author_parliamentarygroups %}
                       {% for parliamentarygroup in initiative.author_parliamentarygroups %}
                       <p style="margin: 0 0 16px 0; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; "><img src="{{tipi_frontend}}/img/alerts/gp/{{parliamentarygroup|replace(" ", "_")}}.png" style="vertical-align: middle; margin-right: 8px;">{{parliamentarygroup}}</p>
@@ -123,7 +123,7 @@
                   <tr>
                     <td colspan="2" style="padding-bottom: 0;">
                       <p style="margin: 0 0 8px 0;">
-                        <a href="{{tipi_frontend}}/iniciativas/{{initiative.id}}" style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-decoration: none;">
+                        <a href="{{tipi_frontend}}/iniciativas/{{initiative.id}}?utm_source=alerts&utm_medium=email&utm_campaign=qhld&utm_content=other_initiatives" style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-decoration: none;">
                           <img src="{{tipi_frontend}}/img/alerts/status/{{status_mapping[initiative.status]|default('neutral')}}.png" style="vertical-align: middle;"> {{initiative.title|truncate(250, True)}}
                         </a>
                       </p>
@@ -139,7 +139,7 @@
                   {% if legislative_initiatives|length > 10 or political_orientation_initiatives|length > 20 or other_initiatives|length > 20 %}
                   <tr>
                     <td colspan="2" style="text-align: center;">
-                      <a href="{{tipi_frontend}}/resultados/{{search.search_query_params}}" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Consulta el resto de iniciativas</a>
+                      <a href="{{tipi_frontend}}/resultados/{{search.search_query_params}}?utm_source=alerts&utm_medium=email&utm_campaign=qhld&utm_content=more_initiatives" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Consulta el resto de iniciativas</a>
                     </td>
                   </tr>
                   <!-- Espaciador -->
@@ -161,7 +161,7 @@
         <td style="text-align: center;">
           <p style="color: #1D1D1B; text-align: center; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 400; line-height: 150%;">Con QHLD, cualquier persona u organización, con independencia de su origen, recursos o capacidades, puede conocer lo que ocurre en el Congreso de los Diputados. Lo entendemos como un servicio público y nos comprometemos a ofrecerlo de forma abierta y gratuita.</p>
           <p style="color: #1D1D1B; font-family: Arial; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; text-transform: uppercase;"> Ayúdanos a cumplir nuestro compromiso</p>
-          <p style="margin-top:32px"><a href="https://politicalwatch.es/participa/#dona-y-colabora" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Haz una donación</a></p>
+          <p style="margin-top:32px"><a href="https://politicalwatch.es/participa/#dona-y-colabora?utm_source=alerts&utm_medium=email&utm_campaign=qhld&utm_content=donation_banner" style="background: #EFCA53; padding: 12px 32px; color: #1D1D1B; font-family: Arial; font-size: 14px; font-style: normal; font-weight: 700; line-height: 24px; text-transform: uppercase; text-decoration: none; ">Haz una donación</a></p>
         </td>
       </tr>
       <tr>
@@ -172,7 +172,7 @@
             Email: coordinacion@unmundosalvadorsoler.org<br/>
             Teléfono: 691 691 810
             </p>
-            <p>Puede consultar toda la información detallada sobre nuestra <a href="https://quehacenlosdiputados.es/politica-de-privacidad" target="_blank">Política de Privacidad</a> en nuestra web.</p>
+            <p>Puede consultar toda la información detallada sobre nuestra <a href="https://quehacenlosdiputados.es/politica-de-privacidad?utm_source=alerts&utm_medium=email&utm_campaign=qhld&utm_content=privacy_policy" target="_blank">Política de Privacidad</a> en nuestra web.</p>
         </td>
       </tr>
     </table>
