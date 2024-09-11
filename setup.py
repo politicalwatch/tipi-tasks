@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="tipi-tasks",
     version="1.0.0",
-    description="TIPI Data",
+    description="TIPI Tasks",
     url="https://github.com/politicalwatch/tipi-tasks",
     author="danigm",
     packages=find_packages(),
