@@ -44,18 +44,18 @@ def send_validation_emails():
             timeout = config.VALIDATION_TIMEOUT - time_passed
             search_json = json.loads(search.search)
             kb = search_json['knowledgebase'] if 'knowledgebase' in search_json else 'politicas'
+            mail_config = config.mail_config(kb)
             context = {
                 'tipi_name': get_project_name(kb),
-                'tipi_email': config.TIPI_EMAIL,
+                'tipi_email': mail_config['FROM'],
                 'search_sentence': make_sentence(search.search),
                 'validate_url': "{}/emails/validate/{}/{}".format(
-                    config.TIPI_BACKEND,
+                    mail_config['BACKEND'],
                     alert.id,
                     search.hash
                     ),
                 'timeout': timeout
             }
-            mail_config = config.mail_config(kb)
             send_email([alert.email],
                        mail_config['VALIDATION_SUBJECT'],
                        template,
