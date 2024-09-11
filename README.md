@@ -113,8 +113,6 @@ can override to use a custom template directory. For example:
 
 TEMPLATE_DIR = '/var/www/templates/'
 
-SPARKPOST_API = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-FROM_EMAIL = 'sparkpost@wadobo.com'
 DEBUG = True
 
 CLEAN_EMAILS_TIMEOUT = 10
