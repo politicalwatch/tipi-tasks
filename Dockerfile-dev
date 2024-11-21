@@ -1,6 +1,6 @@
 FROM python:3.8-slim
 
-RUN apt-get update && apt-get install -y git gcc libpcre3-dev
+RUN apt-get update && apt-get install -y git gcc
 RUN pip install pip==24.0
 
 WORKDIR /app

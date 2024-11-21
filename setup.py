@@ -17,7 +17,7 @@ setup(
         "markupsafe==2.1.4",
         "mongoengine==0.28.2",
         "pymongo==4.7.2",
-        "python-pcre==0.7",
+        "regex==2024.11.6",
         "pytz==2024.1",
         "requests==2.32.3",
         "six==1.12.0",
