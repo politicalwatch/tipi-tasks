@@ -1,7 +1,6 @@
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 RUN apt-get update && apt-get install -y git gcc
-RUN pip install pip==24.0
 
 WORKDIR /app
 COPY requirements.txt /app/
